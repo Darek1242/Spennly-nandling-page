@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { Logo } from "./Logo";
 
 export const LandingPage: React.FC = () => {
-  const APP_URL = "https://spennly.netlify.app/";
+  const LOGIN_URL = "https://app.spennly.pl/auth";
+  const SIGNUP_URL = "https://app.spennly.pl/auth?mode=signup";
+  const APP_URL = SIGNUP_URL;
 
-  const [pricingPeriod, setPricingPeriod] = useState<
-    "1m" | "3m" | "6m" | "12m"
-  >("12m");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   // Twoje ostre grafiki z folderu Public/Image/
@@ -80,19 +79,19 @@ export const LandingPage: React.FC = () => {
             </a>
           </nav>
 
-          {/* Actions - Redirect to https://spennly.netlify.app/ */}
+          {/* Actions - Redirect to app.spennly.pl */}
           <div className="flex items-center gap-1 sm:gap-3 shrink-0">
             <a
-              href={APP_URL}
+              href={LOGIN_URL}
               className="text-xs sm:text-sm font-semibold text-slate-700 hover:text-black px-1.5 sm:px-3 py-1.5 sm:py-2 whitespace-nowrap transition-colors"
             >
               Zaloguj się
             </a>
             <a
-              href={APP_URL}
+              href={SIGNUP_URL}
               className="inline-flex items-center justify-center whitespace-nowrap text-xs sm:text-sm font-bold bg-[#00a859] hover:bg-[#008f4c] text-white px-2.5 min-[380px]:px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-[0_2px_10px_rgba(0,168,89,0.25)] hover:shadow-[0_4px_16px_rgba(0,168,89,0.35)] active:scale-95 transition-all"
             >
-              Zacznij za darmo
+              Zarejestruj się
             </a>
           </div>
         </div>
@@ -230,7 +229,7 @@ export const LandingPage: React.FC = () => {
               </span>
               <h3 className="text-xl font-bold text-[#131b2e] mb-2">Płacisz</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Kartą, telefonem lub BLIKiem.
+                Wydajesz pienidze.
               </p>
             </div>
             <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-sm flex flex-col items-start hover:-translate-y-1 transition-transform">
@@ -241,7 +240,7 @@ export const LandingPage: React.FC = () => {
                 Zapisujesz
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Dodajesz wydatek w kilka sekund.
+                Otwierasz aplikację i zapisujesz wydatek.
               </p>
             </div>
             <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-sm flex flex-col items-start hover:-translate-y-1 transition-transform">
@@ -250,7 +249,7 @@ export const LandingPage: React.FC = () => {
               </span>
               <h3 className="text-xl font-bold text-[#131b2e] mb-2">Widzisz</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Wiesz dokładnie, na co wydajesz.
+                Kontrolujesz swoje wydatki.
               </p>
             </div>
           </div>
@@ -494,14 +493,6 @@ export const LandingPage: React.FC = () => {
                   ))}
                 </div>
               </div>
-              <div className="mt-8">
-                <a
-                  href={APP_URL}
-                  className="w-full inline-flex items-center justify-center text-sm font-bold bg-slate-100 hover:bg-slate-200 text-[#131b2e] py-3.5 rounded-full transition-colors cursor-pointer"
-                >
-                  Zacznij za darmo
-                </a>
-              </div>
             </div>
 
             {/* Karta PREMIUM */}
@@ -525,131 +516,64 @@ export const LandingPage: React.FC = () => {
                   Wszystkie funkcje Free + nielimitowane portfele
                 </p>
 
-                <div className="space-y-2.5 mb-6">
-                  <label
-                    onClick={() => setPricingPeriod("1m")}
-                    className={`flex items-center justify-between p-3 rounded-xl border transition-all cursor-pointer ${
-                      pricingPeriod === "1m"
-                        ? "bg-emerald-50/70 border-[#00a859]"
-                        : "bg-slate-50 border-slate-200 hover:bg-slate-100"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <input
-                        type="radio"
-                        name="plan_period"
-                        checked={pricingPeriod === "1m"}
-                        onChange={() => setPricingPeriod("1m")}
-                        className="accent-[#00a859]"
-                      />
-                      <span className="text-xs font-bold text-slate-800">
-                        1 miesiąc
-                      </span>
-                    </div>
+                {/* Zestawienie cenowe bez kropek i przełączania */}
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                    <span className="text-xs font-bold text-slate-800">
+                      1 miesiąc
+                    </span>
                     <span className="text-sm font-bold text-[#131b2e]">
                       11,99 zł
                     </span>
-                  </label>
+                  </div>
 
-                  <label
-                    onClick={() => setPricingPeriod("3m")}
-                    className={`flex items-center justify-between p-3 rounded-xl border transition-all cursor-pointer ${
-                      pricingPeriod === "3m"
-                        ? "bg-emerald-50/70 border-[#00a859]"
-                        : "bg-slate-50 border-slate-200 hover:bg-slate-100"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <input
-                        type="radio"
-                        name="plan_period"
-                        checked={pricingPeriod === "3m"}
-                        onChange={() => setPricingPeriod("3m")}
-                        className="accent-[#00a859]"
-                      />
-                      <div>
-                        <span className="text-xs font-bold text-slate-800">
-                          3 miesiące
-                        </span>
-                        <span className="text-[11px] text-slate-400 block">
-                          ≈ 10,00 zł / mies.
-                        </span>
-                      </div>
+                  <div className="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                    <div>
+                      <span className="text-xs font-bold text-slate-800">
+                        3 miesiące
+                      </span>
+                      <span className="text-[11px] text-slate-400 block">
+                        ≈ 10,00 zł / mies.
+                      </span>
                     </div>
                     <span className="text-sm font-bold text-[#131b2e]">
                       29,99 zł
                     </span>
-                  </label>
+                  </div>
 
-                  <label
-                    onClick={() => setPricingPeriod("6m")}
-                    className={`flex items-center justify-between p-3 rounded-xl border transition-all cursor-pointer ${
-                      pricingPeriod === "6m"
-                        ? "bg-emerald-50/70 border-[#00a859]"
-                        : "bg-slate-50 border-slate-200 hover:bg-slate-100"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <input
-                        type="radio"
-                        name="plan_period"
-                        checked={pricingPeriod === "6m"}
-                        onChange={() => setPricingPeriod("6m")}
-                        className="accent-[#00a859]"
-                      />
-                      <div>
-                        <span className="text-xs font-bold text-slate-800">
-                          6 miesięcy
-                        </span>
-                        <span className="text-[11px] text-slate-400 block">
-                          ≈ 8,33 zł / mies.
-                        </span>
-                      </div>
+                  <div className="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                    <div>
+                      <span className="text-xs font-bold text-slate-800">
+                        6 miesięcy
+                      </span>
+                      <span className="text-[11px] text-slate-400 block">
+                        ≈ 8,33 zł / mies.
+                      </span>
                     </div>
                     <span className="text-sm font-bold text-[#131b2e]">
                       49,99 zł
                     </span>
-                  </label>
+                  </div>
 
-                  <label
-                    onClick={() => setPricingPeriod("12m")}
-                    className={`flex items-center justify-between p-3 rounded-xl border-2 transition-all cursor-pointer ${
-                      pricingPeriod === "12m"
-                        ? "bg-emerald-50 border-[#00a859] shadow-xs"
-                        : "bg-slate-50 border-slate-200 hover:bg-slate-100"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <input
-                        type="radio"
-                        name="plan_period"
-                        checked={pricingPeriod === "12m"}
-                        onChange={() => setPricingPeriod("12m")}
-                        className="accent-[#00a859]"
-                      />
-                      <div>
+                  <div className="flex items-center justify-between p-3.5 rounded-xl bg-emerald-50/70 border border-[#00a859]/50 shadow-xs">
+                    <div>
+                      <div className="flex items-center gap-1.5">
                         <span className="text-xs font-extrabold text-[#131b2e]">
                           12 miesięcy
                         </span>
-                        <span className="text-[11px] text-[#00a859] block font-bold">
-                          ≈ 6,67 zł / mies. • Najniższy koszt
+                        <span className="text-[10px] bg-[#00a859] text-white px-2 py-0.5 rounded-full font-bold">
+                          Najlepsza oferta
                         </span>
                       </div>
+                      <span className="text-[11px] text-[#00a859] block font-bold mt-0.5">
+                        ≈ 6,67 zł / mies. • Najniższy koszt
+                      </span>
                     </div>
                     <span className="text-base font-extrabold text-[#00a859]">
                       79,99 zł
                     </span>
-                  </label>
+                  </div>
                 </div>
-              </div>
-
-              <div>
-                <a
-                  href={APP_URL}
-                  className="w-full inline-flex items-center justify-center text-sm font-bold bg-[#00a859] hover:bg-[#008f4c] text-white py-4 rounded-full shadow-[0_8px_20px_-4px_rgba(0,168,89,0.35)] active:scale-95 transition-all cursor-pointer"
-                >
-                  Przejdź na Premium
-                </a>
               </div>
             </div>
           </div>
