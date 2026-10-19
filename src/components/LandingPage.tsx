@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Logo } from "./Logo";
 
-export const LandingPage: React.FC = () => {
+interface LandingPageProps {
+  onNavigate?: (path: string) => void;
+}
+export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
   const LOGIN_URL = "https://app.spennly.pl/auth";
   const SIGNUP_URL = "https://app.spennly.pl/auth?mode=signup";
   const APP_URL = SIGNUP_URL;
@@ -654,24 +657,65 @@ export const LandingPage: React.FC = () => {
       </main>
 
       {/* 11. FOOTER */}
+      {/* 11. FOOTER */}
       <footer className="w-full bg-[#f2f3ff] border-t border-slate-200/80">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-slate-200">
+            {/* Twoje Logo po lewej stronie */}
             <div className="flex items-center gap-2">
-              <Logo size="sm" height={46} />
+              <div className="w-6 h-6 rounded-md bg-[#10b981] flex items-center justify-center text-white font-bold text-xs shadow-sm">
+                S
+              </div>
+              <span className="font-bold text-slate-900 tracking-tight text-sm">
+                Spennly
+              </span>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold text-slate-600">
-              <a href={APP_URL} className="hover:text-black transition-colors">
+            {/* Linki po prawej stronie - dokładnie jak na Twoim zdjęciu */}
+            <div className="flex flex-wrap items-center justify-center gap-8 text-xs font-semibold text-slate-600">
+              <a
+                href="/polityka-prywatnosci"
+                onClick={(e) => {
+                  if (onNavigate) {
+                    e.preventDefault();
+                    onNavigate("/polityka-prywatnosci");
+                  }
+                }}
+                className="hover:text-black transition-colors"
+              >
                 Polityka Prywatności
               </a>
-              <a href={APP_URL} className="hover:text-black transition-colors">
+
+              <a
+                href="/regulamin"
+                onClick={(e) => {
+                  if (onNavigate) {
+                    e.preventDefault();
+                    onNavigate("/regulamin");
+                  }
+                }}
+                className="hover:text-black transition-colors"
+              >
                 Regulamin
               </a>
-              <a href={APP_URL} className="hover:text-black transition-colors">
+
+              <a
+                href="/polityka-cookies"
+                onClick={(e) => {
+                  if (onNavigate) {
+                    e.preventDefault();
+                    onNavigate("/polityka-cookies");
+                  }
+                }}
+                className="hover:text-black transition-colors"
+              >
                 Bezpieczeństwo
               </a>
-              <a href={APP_URL} className="hover:text-black transition-colors">
+
+              <a
+                href="mailto:app.spennly@gmail.com"
+                className="hover:text-black transition-colors"
+              >
                 Kontakt
               </a>
             </div>
