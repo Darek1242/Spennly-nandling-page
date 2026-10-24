@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Logo } from "./Logo";
+import { GuideSection } from "./GuideSection";
+import { InstallGuideSection } from "./InstallGuideSection";
 
 interface LandingPageProps {
   onNavigate?: (path: string) => void;
@@ -45,19 +47,20 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       a: "Nie. Spennly celowo opiera się na ręcznym zapisywaniu wydatków. Właśnie ta 3-sekundowa chwila uważności przy płaceniu kartą pozwala realnie zauważyć, gdzie idą pieniądze i zmienić nawyki finansowe.",
     },
   ];
+  // Stan otwarcia mobilnego menu
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <div className="w-full min-h-screen bg-[#faf8ff] text-[#131b2e] selection:bg-emerald-100 selection:text-emerald-900 font-sans">
       {/* 1. TOP NAVIGATION HEADER */}
-      {/* 1. TOP NAVIGATION HEADER */}
       <header className="fixed top-0 left-0 w-full z-50 bg-[#faf8ff]/90 backdrop-blur-xl border-b border-black/[0.04]">
-        <div className="h-16 sm:h-20 max-w-[1200px] mx-auto px-2.5 sm:px-6 lg:px-8 flex items-center justify-between gap-1 sm:gap-4">
-          {/* Brand Logo */}
+        <div className="h-16 sm:h-20 max-w-[1200px] mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-2 sm:gap-4">
+          {/* Brand Logo - po lewej stronie */}
           <a href="#" className="flex items-center cursor-pointer shrink-0">
             <Logo size="md" />
           </a>
 
-          {/* Navigation Links */}
+          {/* Navigation Links - na środku (tylko desktop) */}
           <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
             <a
               href="#funkcje"
@@ -80,22 +83,167 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             <a href="#faq" className="hover:text-[#00a859] transition-colors">
               FAQ
             </a>
+            <a
+              href="#instrukcja"
+              className="hover:text-[#00a859] transition-colors"
+            >
+              Instrukcja
+            </a>
+            <a
+              href="#jak-zainstalowac"
+              className="hover:text-[#00a859] transition-colors"
+            >
+              Jak zainstalować
+            </a>
           </nav>
 
-          {/* Actions - Redirect to app.spennly.pl */}
-          <div className="flex items-center gap-1 sm:gap-3 shrink-0">
+          {/* Actions & Hamburger - po prawej stronie */}
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             <a
               href={LOGIN_URL}
-              className="text-xs sm:text-sm font-semibold text-slate-700 hover:text-black px-1.5 sm:px-3 py-1.5 sm:py-2 whitespace-nowrap transition-colors"
+              className="hidden sm:inline-block text-xs sm:text-sm font-semibold text-slate-700 hover:text-black px-1.5 sm:px-3 py-1.5 sm:py-2 whitespace-nowrap transition-colors"
             >
               Zaloguj się
             </a>
             <a
               href={SIGNUP_URL}
-              className="inline-flex items-center justify-center whitespace-nowrap text-xs sm:text-sm font-bold bg-[#00a859] hover:bg-[#008f4c] text-white px-2.5 min-[380px]:px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-[0_2px_10px_rgba(0,168,89,0.25)] hover:shadow-[0_4px_16px_rgba(0,168,89,0.35)] active:scale-95 transition-all"
+              className="inline-flex items-center justify-center whitespace-nowrap text-xs sm:text-sm font-bold bg-[#00a859] hover:bg-[#008f4c] text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-[0_2px_10px_rgba(0,168,89,0.25)] hover:shadow-[0_4px_16px_rgba(0,168,89,0.35)] active:scale-95 transition-all"
             >
               Zarejestruj się
             </a>
+
+            {/* Animowany przezroczysty przycisk Hamburger (tylko na telefonach) */}
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? "Zamknij menu" : "Otwórz menu"}
+              aria-expanded={isMobileMenuOpen}
+              className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl bg-white/70 hover:bg-white/90 active:scale-90 border border-slate-200/80 shadow-xs backdrop-blur-md transition-all duration-200 focus:outline-none"
+            >
+              <div className="relative w-5 h-4 flex flex-col justify-between">
+                <span
+                  className={`block h-0.5 w-5 bg-slate-800 rounded-full transition-all duration-300 origin-center ${
+                    isMobileMenuOpen
+                      ? "rotate-45 translate-y-[7px] bg-[#00a859]"
+                      : ""
+                  }`}
+                />
+                <span
+                  className={`block h-0.5 w-5 bg-slate-800 rounded-full transition-all duration-200 ${
+                    isMobileMenuOpen ? "opacity-0 scale-0" : "opacity-100"
+                  }`}
+                />
+                <span
+                  className={`block h-0.5 w-5 bg-slate-800 rounded-full transition-all duration-300 origin-center ${
+                    isMobileMenuOpen
+                      ? "-rotate-45 -translate-y-[7px] bg-[#00a859]"
+                      : ""
+                  }`}
+                />
+              </div>
+            </button>
+          </div>
+        </div>
+
+        {/* Tło przyciemniające po kliknięciu w hamburger na telefonie */}
+        {isMobileMenuOpen && (
+          <div
+            className="fixed inset-0 top-16 sm:top-20 bg-slate-900/30 backdrop-blur-xs z-40 md:hidden transition-opacity duration-300"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+        )}
+
+        {/* Rozsuwane menu mobilne (przezroczyste szkło) */}
+        <div
+          className={`md:hidden fixed inset-x-0 top-16 sm:top-20 z-40 bg-[#faf8ff]/95 backdrop-blur-2xl border-b border-slate-200/80 shadow-2xl transition-all duration-300 ease-out origin-top ${
+            isMobileMenuOpen
+              ? "opacity-100 translate-y-0 pointer-events-auto visible"
+              : "opacity-0 -translate-y-3 pointer-events-none invisible"
+          }`}
+        >
+          <div className="px-5 py-6 flex flex-col gap-1 max-h-[calc(100vh-5rem)] overflow-y-auto">
+            <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-3 pb-1">
+              Nawigacja
+            </div>
+
+            <a
+              href="#funkcje"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-3.5 py-3 rounded-xl text-base font-semibold text-slate-700 hover:text-[#00a859] hover:bg-emerald-50/60 active:bg-emerald-100/60 transition-all"
+            >
+              <span>Funkcje</span>
+              <span className="text-slate-300 text-sm">→</span>
+            </a>
+            <a
+              href="#jak-dziala"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-3.5 py-3 rounded-xl text-base font-semibold text-slate-700 hover:text-[#00a859] hover:bg-emerald-50/60 active:bg-emerald-100/60 transition-all"
+            >
+              <span>Jak działa</span>
+              <span className="text-slate-300 text-sm">→</span>
+            </a>
+            <a
+              href="#cennik"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-3.5 py-3 rounded-xl text-base font-semibold text-slate-700 hover:text-[#00a859] hover:bg-emerald-50/60 active:bg-emerald-100/60 transition-all"
+            >
+              <span>Cennik</span>
+              <span className="text-slate-300 text-sm">→</span>
+            </a>
+            <a
+              href="#faq"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-3.5 py-3 rounded-xl text-base font-semibold text-slate-700 hover:text-[#00a859] hover:bg-emerald-50/60 active:bg-emerald-100/60 transition-all"
+            >
+              <span>FAQ</span>
+              <span className="text-slate-300 text-sm">→</span>
+            </a>
+            <a
+              href="#instrukcja"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-3.5 py-3 rounded-xl text-base font-semibold text-slate-700 hover:text-[#00a859] hover:bg-emerald-50/60 active:bg-emerald-100/60 transition-all"
+            >
+              <span className="flex items-center gap-2">
+                <span>Instrukcja</span>
+                <span className="text-[10px] bg-emerald-100 text-[#00a859] font-bold px-2 py-0.5 rounded-full">
+                  Krok po kroku
+                </span>
+              </span>
+              <span className="text-slate-300 text-sm">→</span>
+            </a>
+            <a
+              href="#jak-zainstalowac"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-3.5 py-3 rounded-xl text-base font-semibold text-slate-700 hover:text-[#00a859] hover:bg-emerald-50/60 active:bg-emerald-100/60 transition-all"
+            >
+              <span className="flex items-center gap-2">
+                <span>Jak zainstalować</span>
+                <span className="text-[10px] bg-blue-100 text-blue-700 font-bold px-2 py-0.5 rounded-full">
+                  PWA
+                </span>
+              </span>
+              <span className="text-slate-300 text-sm">→</span>
+            </a>
+
+            <div className="my-2 border-t border-slate-200/80" />
+
+            {/* Przyciski logowania w menu mobilnym */}
+            <div className="flex flex-col gap-2 pt-1">
+              <a
+                href={LOGIN_URL}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full text-center py-3 text-sm font-bold text-slate-700 hover:text-black bg-white/80 hover:bg-white rounded-xl border border-slate-200 transition-colors"
+              >
+                Zaloguj się
+              </a>
+              <a
+                href={SIGNUP_URL}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full text-center py-3.5 text-sm font-bold bg-[#00a859] hover:bg-[#008f4c] text-white rounded-xl shadow-[0_2px_12px_rgba(0,168,89,0.3)] active:scale-[0.98] transition-all"
+              >
+                Zarejestruj się za darmo
+              </a>
+            </div>
           </div>
         </div>
       </header>
@@ -629,6 +777,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             })}
           </div>
         </section>
+
+        {/* 9.2. Instrukcja */}
+        {/* INSTRUKCJA (POZNAJ SPENNLY KROK PO KROKU) */}
+        <GuideSection />
+
+        {/* 9.3JAK ZAINSTALOWAĆ JAKO APLIKACJĘ */}
+        <InstallGuideSection />
 
         {/* 10. FINAL CTA BANNER */}
         <section className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pb-20">
