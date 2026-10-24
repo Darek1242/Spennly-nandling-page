@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 // Komponent ładujący zrzut ekranu (np. /image/step1.png),
 // a w przypadku braku pliku wyświetlający estetyczną makietę jako fallback.
@@ -26,8 +26,18 @@ const StepVisual: React.FC<{
 };
 
 export const GuideSection: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    // Sprawdzamy, czy w URL jest #instrukcja
+    if (window.location.hash === "#instrukcja") {
+      sectionRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="instrukcja"
       className="w-full py-20 relative overflow-hidden bg-gradient-to-b from-[#faf8ff] via-[#f4f3ff]/60 to-[#faf8ff]"
     >
