@@ -818,14 +818,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-slate-200">
             {/* Twoje Logo po lewej stronie */}
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-md bg-[#10b981] flex items-center justify-center text-white font-bold text-xs shadow-sm">
-                S
-              </div>
-              <span className="font-bold text-slate-900 tracking-tight text-sm">
-                Spennly
-              </span>
-            </div>
+            <a href="#" className="flex items-center cursor-pointer shrink-0">
+              <Logo size="md" />
+            </a>
 
             {/* Linki po prawej stronie - dokładnie jak na Twoim zdjęciu */}
             <div className="flex flex-wrap items-center justify-center gap-8 text-xs font-semibold text-slate-600">
