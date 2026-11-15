@@ -724,9 +724,24 @@ export const GuideSection: React.FC = () => {
                   </div>
                 </div>
 
+                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
+                  <div className="w-7 h-7 rounded-lg bg-[#00a859] text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                    B
+                  </div>
+                  <div className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    <strong className="text-slate-900 block font-bold mb-0.5">
+                      Porównywarka okresów (miesiąc, 3 miesiące, rok):
+                    </strong>
+                    Wygodne przyciski pozwalają porównać wydatki miesiąc do
+                    miesiąca, w ujęciu 3 miesięcy oraz roku. Porównywarka od
+                    razu pokazuje, ile więcej lub mniej wydałeś względem
+                    wcześniejszego okresu.
+                  </div>
+                </div>
+
                 <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200/80">
                   <div className="w-7 h-7 rounded-lg bg-emerald-50 text-[#00a859] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
-                    B
+                    C
                   </div>
                   <div className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     <strong className="text-slate-900 block font-bold mb-0.5">
@@ -739,7 +754,7 @@ export const GuideSection: React.FC = () => {
 
                 <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200/80">
                   <div className="w-7 h-7 rounded-lg bg-emerald-50 text-[#00a859] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
-                    C
+                    D
                   </div>
                   <div className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     <strong className="text-slate-900 block font-bold mb-0.5">
