@@ -137,7 +137,8 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({
               </li>
               <li className="p-3 bg-slate-50 rounded-xl border border-slate-200/60">
                 <strong>Premium</strong> – płatna wersja Aplikacji odblokowująca
-                dodatkowe funkcje, w tym wiele portfeli.
+                dodatkowe funkcje, w tym wiele portfeli oraz nielimitowane
+                kategorie wydatków.
               </li>
             </ul>
           </section>
@@ -162,7 +163,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({
                   Wersja bezpłatna
                 </h3>
                 <p className="text-sm text-slate-600 mt-2">
-                  1 portfel, podstawowe raporty.
+                  1 portfel, pięć kategorii wydatków.
                 </p>
               </div>
 
@@ -174,7 +175,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({
                   Wersja Premium
                 </h3>
                 <p className="text-sm text-slate-600 mt-2">
-                  Nielimitowane portfele, zaawansowane raporty, eksport danych.
+                  Nielimitowane portfele, nielimitowane kategorie wydatków.
                 </p>
               </div>
             </div>

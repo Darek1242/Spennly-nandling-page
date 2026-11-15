@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 
-// Komponent ładujący zrzut ekranu (np. /image/step1.png),
-// a w przypadku braku pliku wyświetlający estetyczną makietę jako fallback.
+// Komponent wyświetlający rzeczywisty zrzut ekranu (np. /image/step1.png),
+// a w razie braku pliku wyświetlający estetyczną makietę wektorową jako fallback.
 const StepVisual: React.FC<{
   imageSrc: string;
   altText: string;
@@ -26,22 +26,12 @@ const StepVisual: React.FC<{
 };
 
 export const GuideSection: React.FC = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    // Sprawdzamy, czy w URL jest #instrukcja
-    if (window.location.hash === "#instrukcja") {
-      sectionRef.current?.scrollIntoView({ behavior: "smooth" });
-    }
-  }, []);
-
   return (
     <section
-      ref={sectionRef}
       id="instrukcja"
       className="w-full py-20 relative overflow-hidden bg-gradient-to-b from-[#faf8ff] via-[#f4f3ff]/60 to-[#faf8ff]"
     >
-      {/* Tło dekoracyjne */}
+      {/* Delikatne tło dekoracyjne */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-emerald-100/30 rounded-full blur-3xl pointer-events-none -z-10" />
 
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -91,6 +81,8 @@ export const GuideSection: React.FC = () => {
 
         {/* ========================================================= */}
         {/* KROK 1: GÓRNY PASEK, PRZEŁĄCZNIK WIDOKÓW I WYBÓR MIESIĄCA */}
+        {/* MOBILE: OPIS (order-1) -> ZDJĘCIE (order-2)              */}
+        {/* DESKTOP (lg): ZDJĘCIE (lg:order-1) -> OPIS (lg:order-2)  */}
         {/* ========================================================= */}
         <div
           id="krok-nawigacja"
@@ -230,6 +222,8 @@ export const GuideSection: React.FC = () => {
 
         {/* ========================================================= */}
         {/* KROK 2: POPUP USTAWIEŃ PORTFELA & OPCJA PREMIUM          */}
+        {/* MOBILE: OPIS (order-1) -> ZDJĘCIE (order-2)              */}
+        {/* DESKTOP (lg): OPIS (lg:order-1) -> ZDJĘCIE (lg:order-2)  */}
         {/* ========================================================= */}
         <div
           id="krok-zarzadzanie"
@@ -276,12 +270,12 @@ export const GuideSection: React.FC = () => {
                     </span>
                   </div>
                   <h4 className="text-xs sm:text-sm font-bold text-slate-900 mb-1">
-                    Wieloportfelowość Premium
+                    Wieloportfelowość i kategorie Premium
                   </h4>
                   <p className="text-xs text-slate-600 leading-relaxed">
-                    Darmowa wersja zawiera 1 pełny portfel. Subskrypcja Premium
-                    odblokowuje nielimitowaną liczbę portfeli i dodatkowe
-                    raporty.
+                    Darmowa wersja zawiera 1 portfel i maksymalnie 5 kategorii.
+                    Subskrypcja Premium odblokowuje nielimitowaną liczbę
+                    portfeli, nielimitowane kategorie oraz dodatkowe raporty.
                   </p>
                 </div>
               </div>
@@ -350,6 +344,8 @@ export const GuideSection: React.FC = () => {
 
         {/* ========================================================= */}
         {/* KROK 3: DODAWANIE ŚRODKÓW, KATEGORIE I REJESTRACJA WYDATKU */}
+        {/* MOBILE: OPIS (order-1) -> ZDJĘCIE (order-2)              */}
+        {/* DESKTOP (lg): ZDJĘCIE (lg:order-1) -> OPIS (lg:order-2)  */}
         {/* ========================================================= */}
         <div
           id="krok-wplywy"
@@ -368,15 +364,41 @@ export const GuideSection: React.FC = () => {
                 Dodawanie środków, kategorie i rejestracja wydatku
               </h3>
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed pb-2">
-                Zaprojektowane pod maksymalną szybkość: wpisujesz kwotę,
-                wybierasz kategorię i zatwierdzasz. Bez zbędnych formularzy i
-                zbędnego klikania.
+                <span className="lg:hidden">
+                  Aby otworzyć panel wprowadzania, naciśnij przycisk{" "}
+                  <strong className="text-slate-900">„Dodaj operację”</strong>.
+                  Otworzy się sekcja, w której w kilka sekund dodasz wpływ,
+                  wpiszesz wydatek i ustawisz kategorie – bez zbędnych
+                  formularzy.
+                </span>
+                <span className="hidden lg:inline">
+                  Zaprojektowane pod maksymalną szybkość: wpisujesz kwotę,
+                  wybierasz kategorię i zatwierdzasz. Bez zbędnych formularzy i
+                  zbędnego klikania.
+                </span>
               </p>
 
               <div className="space-y-3 pt-2">
+                {/* Tylko na mobilce: przycisk Dodaj operację */}
+                <div className="flex lg:hidden items-start gap-3 p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
+                  <div className="w-7 h-7 rounded-lg bg-[#00a859] text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                    A
+                  </div>
+                  <div className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    <strong className="text-slate-900 block font-bold mb-0.5">
+                      Naciśnij przycisk „Dodaj operację”:
+                    </strong>
+                    Kliknij przycisk{" "}
+                    <strong className="text-[#00a859]">Dodaj operację</strong>{" "}
+                    na ekranie głównym – od razu otworzy się poniższa sekcja
+                    dodawania środków, kategorii oraz wydatków.
+                  </div>
+                </div>
+
                 <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200/80">
                   <div className="w-7 h-7 rounded-lg bg-emerald-50 text-[#00a859] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
-                    A
+                    <span className="lg:hidden">B</span>
+                    <span className="hidden lg:inline">A</span>
                   </div>
                   <div className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     <strong className="text-slate-900 block font-bold mb-0.5">
@@ -389,20 +411,22 @@ export const GuideSection: React.FC = () => {
 
                 <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200/80">
                   <div className="w-7 h-7 rounded-lg bg-emerald-50 text-[#00a859] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
-                    B
+                    <span className="lg:hidden">C</span>
+                    <span className="hidden lg:inline">B</span>
                   </div>
                   <div className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     <strong className="text-slate-900 block font-bold mb-0.5">
                       Własne kategorie:
                     </strong>
-                    Dostosuj listę kategorii pod swój styl życia. Możesz dodawać
-                    własne grupy (np. Kawiarnie, Hobby, Dziecko).
+                    Dostosuj listę kategorii pod swój styl życia (np. Kawiarnie,
+                    Hobby, Dziecko) – do 5 w planie Free i bez limitu w Premium.
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200/80">
                   <div className="w-7 h-7 rounded-lg bg-emerald-50 text-[#00a859] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
-                    C
+                    <span className="lg:hidden">D</span>
+                    <span className="hidden lg:inline">C</span>
                   </div>
                   <div className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     <strong className="text-slate-900 block font-bold mb-0.5">
@@ -415,8 +439,41 @@ export const GuideSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Zdjęcie / Makieta - Na mobile ZAWSZE POD OPISEM (order-2), na desktopie po lewej (lg:order-1) */}
-            <div className="order-2 lg:order-1 lg:col-span-5 flex justify-center">
+            {/* Zdjęcia / Makiety - Na mobile ZAWSZE POD OPISEM (order-2), na desktopie po lewej (lg:order-1) */}
+            <div className="order-2 lg:order-1 lg:col-span-5 flex flex-col items-center gap-3">
+              {/* 1. Przycisk Dodaj operację (step7.png) - WIDOCZNE TYLKO NA MOBILCE */}
+              <div className="w-full flex flex-col items-center gap-3 lg:hidden">
+                <div className="w-full max-w-[340px]">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5 px-1 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-[#00a859]"></span>
+                    1. Kliknij przycisk „Dodaj operację”
+                  </div>
+                  <StepVisual
+                    imageSrc="/image/step7.png"
+                    altText="Krok 3 - Przycisk Dodaj operację"
+                    fallback={
+                      <div className="w-full max-w-[340px] bg-white rounded-3xl p-4 shadow-[0_12px_32px_rgba(19,27,46,0.08)] border border-slate-200/80">
+                        <button className="w-full py-3 bg-[#00a859] text-white rounded-2xl text-sm font-bold shadow-md flex items-center justify-center gap-2">
+                          <span className="material-symbols-outlined text-lg">
+                            add_circle
+                          </span>
+                          Dodaj operację
+                        </button>
+                      </div>
+                    }
+                  />
+                </div>
+
+                {/* Strzałka przejścia */}
+                <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#00a859] bg-emerald-50 border border-emerald-200/70 px-3 py-1 rounded-full">
+                  <span className="material-symbols-outlined text-sm">
+                    arrow_downward
+                  </span>
+                  Otwiera się sekcja dodawania
+                </div>
+              </div>
+
+              {/* 2. Rozwinięta sekcja operacji (step3.png) - widoczna na mobile i desktop */}
               <StepVisual
                 imageSrc="/image/step3.png"
                 altText="Krok 3 - Wpływy i rejestracja wydatków"
@@ -493,6 +550,8 @@ export const GuideSection: React.FC = () => {
 
         {/* ========================================================= */}
         {/* KROK 4: HISTORIA OPERACJI, EDYCJA I USUWANIE WPISÓW        */}
+        {/* MOBILE: OPIS (order-1) -> ZDJĘCIE (order-2)              */}
+        {/* DESKTOP (lg): OPIS (lg:order-1) -> ZDJĘCIE (lg:order-2)  */}
         {/* ========================================================= */}
         <div
           id="krok-historia"
@@ -626,6 +685,8 @@ export const GuideSection: React.FC = () => {
 
         {/* ========================================================= */}
         {/* KROK 5: RAPORTY, ELASTYCZNY ZAKRES DAT I WYKRES KOŁOWY    */}
+        {/* MOBILE: OPIS (order-1) -> ZDJĘCIE (order-2)              */}
+        {/* DESKTOP (lg): ZDJĘCIE (lg:order-1) -> OPIS (lg:order-2)  */}
         {/* ========================================================= */}
         <div
           id="krok-raporty"
@@ -793,7 +854,62 @@ export const GuideSection: React.FC = () => {
           </div>
         </div>
 
-        {/* DOLNY MINI-BLOK PORADY */}
+        {/* DOLNY MINI-BLOK PORADY: JAK WYROBIĆ NAWYK REGULARNEGO BUDŻETOWANIA */}
+        <div className="mt-16 pt-12 border-t border-slate-200/70 text-center">
+          <span className="text-xs font-bold text-[#00a859] uppercase tracking-wider block mb-2">
+            DOBRE PRAKTYKI
+          </span>
+          <h3 className="text-xl sm:text-3xl font-extrabold text-[#131b2e] tracking-tight mb-8">
+            Jak wyrobić nawyk regularnego budżetowania?
+          </h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto text-left">
+            <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
+              <div className="w-8 h-8 rounded-xl bg-emerald-50 text-[#00a859] flex items-center justify-center font-bold text-sm mb-3">
+                <span className="material-symbols-outlined text-base">
+                  timer
+                </span>
+              </div>
+              <h4 className="text-sm font-bold text-slate-900 mb-1.5">
+                Zasada 10 sekund
+              </h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Wpisuj wydatek od razu przy kasie lub w samochodzie. Zajmuje to
+                ułamek chwili, a wieczorem masz wolną głowę i czysty rachunek.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
+              <div className="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-sm mb-3">
+                <span className="material-symbols-outlined text-base">
+                  category
+                </span>
+              </div>
+              <h4 className="text-sm font-bold text-slate-900 mb-1.5">
+                Zacznij od 5 głównych kategorii
+              </h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Na start w zupełności wystarczą, a przy większych potrzebach w
+                Premium dodasz ich tyle, ile zechcesz
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
+              <div className="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-sm mb-3">
+                <span className="material-symbols-outlined text-base">
+                  analytics
+                </span>
+              </div>
+              <h4 className="text-sm font-bold text-slate-900 mb-1.5">
+                Niedzielna kawa z raportem
+              </h4>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                W każdy weekend rzuć okiem na wykres kołowy i podsumowanie
+                tygodnia. Sprawdź, czy mieścisz się w zaplanowanym budżecie.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

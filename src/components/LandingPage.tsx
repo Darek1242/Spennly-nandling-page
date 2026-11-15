@@ -33,11 +33,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
   const faqItems = [
     {
       q: "Czy Spennly jest darmowe?",
-      a: "Tak, plan darmowy z 1 portfelem jest w 100% bezpłatny na zawsze i nie wymaga podawania karty płatniczej.",
+      a: "Tak, plan darmowy (1 portfel i maksymalnie 5 kategorii wydatków) jest w 100% bezpłatny na zawsze i nie wymaga podawania karty płatniczej..",
     },
     {
       q: "Czym różni się Free od Premium?",
-      a: "W planie Free masz 1 portfel na codzienne wydatki. Premium pozwala tworzyć osobne portfele na firmę, dom, wyjazdy czy samochód oraz oferuje zaawansowane raporty.",
+      a: "W planie Free masz 1 portfel oraz do 5 kategorii wydatków. Premium odblokowuje nielimitowane portfele (na firmę, dom, wyjazdy czy samochód), nielimitowaną liczbę kategorii oraz zaawansowane raporty.",
     },
     {
       q: "Czy mogę korzystać ze Spennly na telefonie?",
@@ -285,7 +285,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             </div>
 
             <p className="text-xs text-slate-400 font-medium mt-3">
-              1 portfel za darmo • bez karty płatniczej
+              1 portfel za darmo • bez karty płatniczej • maksymalnie 5
+              kategorii wydatków
             </p>
 
             {/* SCREENSHOT CENTRUM: Wyświetla Twój plik ekran_glowny.png */}
@@ -446,7 +447,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                     </span>
                   </div>
                   <h4 className="font-bold text-base text-[#131b2e] mb-1">
-                    Własne kategorie
+                    Dopasowane do Twojego stylu życia (do 5 w daarmowym planie,
+                    bez limitu w Premium).
                   </h4>
                   <p className="text-xs text-slate-500">
                     Dopasowane dokładnie do Twojego indywidualnego stylu życia.
@@ -531,10 +533,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               <div className="flex flex-col gap-3.5 w-full">
                 {[
                   "Szybkie dodawanie wydatków",
-                  "Własne kategorie",
+                  "Własne kategorie (do 5 w planie Free)",
                   "Zapisywanie wpływów",
                   "Raporty i wykresy kołowe",
-                  "Wiele portfeli w Premium",
+                  "Nielimitowane portfele i kategorie w Premium",
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-center gap-3">
                     <span className="w-6 h-6 rounded-full bg-emerald-100 text-[#00a859] flex items-center justify-center shrink-0">
@@ -600,7 +602,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               Prosty wybór, przejrzyste zasady
             </h2>
             <p className="text-base text-slate-600 max-w-lg">
-              Jeden portfel na start. Wiele portfeli, gdy potrzebujesz więcej.
+              1 portfel i 5 kategorii na start. Bez limitów w Premium.
             </p>
           </div>
 
@@ -630,7 +632,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   {[
                     "1 portfel",
                     "Wydatki i wpływy",
-                    "Własne kategorie",
+                    "Maksymalnie 5 kategorii",
                     "Podstawowe raporty",
                   ].map((feature) => (
                     <div
@@ -654,18 +656,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   <span className="px-3.5 py-1 rounded-full bg-emerald-50 text-[#00a859] text-xs font-bold uppercase tracking-wider">
                     PREMIUM
                   </span>
-                  <span className="text-xs bg-[#00a859] text-white px-3 py-1 rounded-full font-bold">
-                    Najpopularniejszy
-                  </span>
                 </div>
                 <h3 className="text-xl font-extrabold text-[#131b2e] mb-1">
-                  Więcej portfeli. Więcej porządku.
+                  Pełna swoboda. Zero limitów.
                 </h3>
                 <p className="text-xs font-bold text-[#00a859] mb-6 flex items-center gap-1.5">
                   <span className="material-symbols-outlined text-[16px]">
                     verified
                   </span>
-                  Wszystkie funkcje Free + nielimitowane portfele
+                  Wszystkie funkcje Free + nielimitowane portfele i kategorie
                 </p>
 
                 {/* Zestawienie cenowe bez kropek i przełączania */}
@@ -806,7 +805,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               </a>
             </div>
             <p className="text-xs text-emerald-200 mt-4 font-medium">
-              1 portfel za darmo • bez karty płatniczej
+              1 portfel za darmo • bez karty płatniczej • maksymalnie 5
+              kategorii wydatków
             </p>
           </div>
         </section>
