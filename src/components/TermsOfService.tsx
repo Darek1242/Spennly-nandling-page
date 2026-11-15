@@ -163,7 +163,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({
                   Wersja bezpłatna
                 </h3>
                 <p className="text-sm text-slate-600 mt-2">
-                  1 portfel, pięć kategorii wydatków.
+                  1 portfel, sześć kategorii wydatków.
                 </p>
               </div>
 

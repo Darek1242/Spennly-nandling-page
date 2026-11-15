@@ -273,7 +273,7 @@ export const GuideSection: React.FC = () => {
                     Wieloportfelowość i kategorie Premium
                   </h4>
                   <p className="text-xs text-slate-600 leading-relaxed">
-                    Darmowa wersja zawiera 1 portfel i maksymalnie 5 kategorii.
+                    Darmowa wersja zawiera 1 portfel i maksymalnie 6 kategorii.
                     Subskrypcja Premium odblokowuje nielimitowaną liczbę
                     portfeli, nielimitowane kategorie oraz dodatkowe raporty.
                   </p>
@@ -419,7 +419,7 @@ export const GuideSection: React.FC = () => {
                       Własne kategorie:
                     </strong>
                     Dostosuj listę kategorii pod swój styl życia (np. Kawiarnie,
-                    Hobby, Dziecko) – do 5 w planie Free i bez limitu w Premium.
+                    Hobby, Dziecko) – do 6 w planie Free i bez limitu w Premium.
                   </div>
                 </div>
 
@@ -886,7 +886,7 @@ export const GuideSection: React.FC = () => {
                 </span>
               </div>
               <h4 className="text-sm font-bold text-slate-900 mb-1.5">
-                Zacznij od 5 głównych kategorii
+                Zacznij od 6 głównych kategorii
               </h4>
               <p className="text-xs text-slate-600 leading-relaxed">
                 Na start w zupełności wystarczą, a przy większych potrzebach w

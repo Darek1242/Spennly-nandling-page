@@ -36,11 +36,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
   const faqItems = [
     {
       q: "Czy Spennly jest darmowe?",
-      a: "Tak, plan darmowy (1 portfel i maksymalnie 5 kategorii wydatków) jest w 100% bezpłatny na zawsze i nie wymaga podawania karty płatniczej..",
+      a: "Tak, plan darmowy (1 portfel i maksymalnie 6 kategorii wydatków) jest w 100% bezpłatny na zawsze i nie wymaga podawania karty płatniczej..",
     },
     {
       q: "Czym różni się Free od Premium?",
-      a: "W planie Free masz 1 portfel oraz do 5 kategorii wydatków. Premium odblokowuje nielimitowane portfele (na firmę, dom, wyjazdy czy samochód), nielimitowaną liczbę kategorii oraz zaawansowane raporty.",
+      a: "W planie Free masz 1 portfel oraz do 6 kategorii wydatków. Premium odblokowuje nielimitowane portfele (na firmę, dom, wyjazdy czy samochód), nielimitowaną liczbę kategorii oraz zaawansowane raporty.",
     },
     {
       q: "Czy mogę korzystać ze Spennly na telefonie?",
@@ -288,7 +288,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             </div>
 
             <p className="text-xs text-slate-400 font-medium mt-3">
-              1 portfel za darmo • bez karty płatniczej • maksymalnie 5
+              1 portfel za darmo • bez karty płatniczej • maksymalnie 6
               kategorii wydatków
             </p>
 
@@ -546,7 +546,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                     </span>
                   </div>
                   <h4 className="font-bold text-base text-[#131b2e] mb-1">
-                    Dopasowane do Twojego stylu życia (do 5 w daarmowym planie,
+                    Dopasowane do Twojego stylu życia (do 6 w daarmowym planie,
                     bez limitu w Premium).
                   </h4>
                   <p className="text-xs text-slate-500">
@@ -632,7 +632,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               <div className="flex flex-col gap-3.5 w-full">
                 {[
                   "Szybkie dodawanie wydatków",
-                  "Własne kategorie (do 5 w planie Free)",
+                  "Własne kategorie (do 6 w planie Free)",
                   "Zapisywanie wpływów",
                   "Raporty i wykresy kołowe",
                   "Nielimitowane portfele i kategorie w Premium",
@@ -701,7 +701,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               Prosty wybór, przejrzyste zasady
             </h2>
             <p className="text-base text-slate-600 max-w-lg">
-              1 portfel i 5 kategorii na start. Bez limitów w Premium.
+              1 portfel i 6 kategorii na start. Bez limitów w Premium.
             </p>
           </div>
 
@@ -731,7 +731,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                   {[
                     "1 portfel",
                     "Wydatki i wpływy",
-                    "Maksymalnie 5 kategorii",
+                    "Maksymalnie 6 kategorii",
                     "Podstawowe raporty",
                   ].map((feature) => (
                     <div
@@ -904,7 +904,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
               </a>
             </div>
             <p className="text-xs text-emerald-200 mt-4 font-medium">
-              1 portfel za darmo • bez karty płatniczej • maksymalnie 5
+              1 portfel za darmo • bez karty płatniczej • maksymalnie 6
               kategorii wydatków
             </p>
           </div>
