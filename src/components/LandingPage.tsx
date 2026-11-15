@@ -16,9 +16,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
 
   // Twoje ostre grafiki z folderu Public/Image/
   const [dashboardSrc, setDashboardSrc] = useState("/Image/ekran_glowny.png");
+  const [mobileDashboardSrc, setMobileDashboardSrc] =
+    useState("/image/step8.png");
   const [categoriesSrc, setCategoriesSrc] = useState(
     "/Image/kategorie_podzial_wydatkow.png",
   );
+
   const [reportsSrc, setReportsSrc] = useState("/Image/raporty.png");
 
   const fallbackDashboard =
@@ -290,7 +293,28 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             </p>
 
             {/* SCREENSHOT CENTRUM: Wyświetla Twój plik ekran_glowny.png */}
-            <div className="w-full max-w-5xl mt-12 bg-white rounded-3xl p-2 sm:p-3 border border-slate-200 shadow-[0_20px_50px_-10px_rgba(19,27,46,0.08)] overflow-hidden">
+            {/* SCREENSHOT CENTRUM (MOBILE): Zrzut ekranu z telefonu (step8.png) */}
+
+            {/* SCREENSHOT CENTRUM (DESKTOP): Panel główny aplikacji Spennly */}
+            {/* SCREENSHOT CENTRUM (MOBILE): Zrzut ekranu z telefonu (step8.png) */}
+            <div className="md:hidden w-full max-w-[340px] mt-10 bg-white rounded-3xl p-2.5 border border-slate-200 shadow-[0_20px_50px_-10px_rgba(19,27,46,0.12)] overflow-hidden">
+              <img
+                src={mobileDashboardSrc}
+                alt="Aplikacja Spennly na telefonie - Panel główny"
+                className="w-full h-auto object-cover object-top block rounded-2xl"
+                loading="eager"
+                onError={() => {
+                  if (mobileDashboardSrc === "/image/step8.png") {
+                    setMobileDashboardSrc("/Image/step8.png");
+                  } else if (mobileDashboardSrc === "/Image/step8.png") {
+                    setMobileDashboardSrc(fallbackDashboard);
+                  }
+                }}
+              />
+            </div>
+
+            {/* SCREENSHOT CENTRUM (DESKTOP): Panel główny aplikacji Spennly */}
+            <div className="hidden md:block w-full max-w-5xl mt-12 bg-white rounded-3xl p-2 sm:p-3 border border-slate-200 shadow-[0_20px_50px_-10px_rgba(19,27,46,0.08)] overflow-hidden">
               <div className="h-8 px-4 bg-slate-50 border-b border-slate-100 flex items-center justify-between rounded-t-2xl">
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
@@ -318,7 +342,79 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             </div>
           </div>
         </section>
+        {/* 2.5. PRYWATNOŚĆ I BEZPIECZEŃSTWO (LEKKA SEKCJA) */}
+        <section className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+          <div className="max-w-5xl mx-auto bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-10 border border-emerald-200/70 shadow-[0_12px_35px_-12px_rgba(0,168,89,0.12)]">
+            <div className="flex flex-col items-center text-center mb-8">
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-[#00a859] text-xs font-bold tracking-wider uppercase mb-3">
+                <span className="material-symbols-outlined text-[15px]">
+                  shield_lock
+                </span>
+                PRYWATNOŚĆ OD PIERWSZEJ SEKUNDY
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#131b2e] tracking-tight">
+                Bez połączenia z bankiem.
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 max-w-2xl mt-2.5 leading-relaxed">
+                Nie prosimy o dostęp do konta ani numerów kart. Zapisujesz tylko
+                to, co chcesz.
+              </p>
+            </div>
 
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
+              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-[#faf8ff] border border-slate-200/80">
+                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-[#00a859] flex items-center justify-center shrink-0">
+                  <span className="material-symbols-outlined text-[20px]">
+                    lock
+                  </span>
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-[#131b2e] mb-0.5">
+                    Zero dostępu do banku
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Nie logujesz się przez bank i nie podajesz haseł ani danych
+                    rachunku.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-[#faf8ff] border border-slate-200/80">
+                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-[#00a859] flex items-center justify-center shrink-0">
+                  <span className="material-symbols-outlined text-[20px]">
+                    credit_card_off
+                  </span>
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-[#131b2e] mb-0.5">
+                    Bez numerów kart
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Rejestracja i darmowy plan działają całkowicie bez podawania
+                    karty płatniczej.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-[#faf8ff] border border-slate-200/80">
+                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-[#00a859] flex items-center justify-center shrink-0">
+                  <span className="material-symbols-outlined text-[20px]">
+                    verified_user
+                  </span>
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-[#131b2e] mb-0.5">
+                    Zapisujesz tylko to, co chcesz
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Masz 100% kontroli nad tym, jakie wydatki i kwoty trafiają
+                    do Twojego budżetu.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
         {/* 3. SEKCJA PROBLEMU */}
         <section className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="flex flex-col items-center text-center">
@@ -376,16 +472,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-sm flex flex-col items-start hover:-translate-y-1 transition-transform">
+            {/* Karta 01 */}
+            <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-sm flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
               <span className="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-[#00a859] text-white text-base font-extrabold mb-6 shadow-sm">
                 01
               </span>
               <h3 className="text-xl font-bold text-[#131b2e] mb-2">Płacisz</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Wydajesz pienidze.
+                Kartą, BLIK-iem czy gotówką, jak zawsze.
               </p>
             </div>
-            <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-sm flex flex-col items-start hover:-translate-y-1 transition-transform">
+            {/* Karta 02 */}
+            <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-sm flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
               <span className="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-[#00a859] text-white text-base font-extrabold mb-6 shadow-sm">
                 02
               </span>
@@ -393,16 +491,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
                 Zapisujesz
               </h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Otwierasz aplikację i zapisujesz wydatek.
+                5 sekund: kwota, kategoria, gotowe.
               </p>
             </div>
-            <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-sm flex flex-col items-start hover:-translate-y-1 transition-transform">
+            {/* Karta 03 */}
+            <div className="bg-white rounded-3xl p-8 border border-slate-200/90 shadow-sm flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
               <span className="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-[#00a859] text-white text-base font-extrabold mb-6 shadow-sm">
                 03
               </span>
               <h3 className="text-xl font-bold text-[#131b2e] mb-2">Widzisz</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Kontrolujesz swoje wydatki.
+                Ile Ci zostało i na co poszły pieniądze.
               </p>
             </div>
           </div>
