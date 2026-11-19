@@ -50,7 +50,16 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       q: "Czy Spennly łączy się z moim bankiem?",
       a: "Nie. Spennly celowo opiera się na ręcznym zapisywaniu wydatków. Właśnie ta 3-sekundowa chwila uważności przy płaceniu kartą pozwala realnie zauważyć, gdzie idą pieniądze i zmienić nawyki finansowe.",
     },
+    {
+      q: "Czy Spennly łączy się z moim bankiem?",
+      a: "Nie. Spennly celowo opiera się na ręcznym zapisywaniu wydatków. Właśnie ta 3-sekundowa chwila uważności przy płaceniu kartą pozwala realnie zauważyć, gdzie idą pieniądze i zmienić nawyki finansowe.",
+    },
+    {
+      q: "Jak mogę zrezygnować z miesięcznej subskrypcji?",
+      a: "Subskrypcję możesz anulować w dowolnym momencie kilkoma kliknięciami. Zaloguj się do aplikacji, kliknij ikonę koła zębatego (Ustawienia), następnie wybierz przycisk „Zarządzaj subskrypcją” i kliknij „Anuluj subskrypcję”. Dostęp Premium pozostanie aktywny do końca opłaconego okresu.",
+    },
   ];
+
   // Stan otwarcia mobilnego menu
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
